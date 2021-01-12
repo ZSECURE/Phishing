@@ -12,7 +12,7 @@ Guides/Tools/Scripts for Phishing
 - Current Version - 1.0
 - Created: 12 Jan 2021
 - Updated: N/A 
-- v1.0 - Creation of scripts
+- v1.0 - Creation of guides/tools/scripts
 
 ## Authors
 
