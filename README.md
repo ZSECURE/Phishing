@@ -1,6 +1,6 @@
 # Phishing
 
-Tools/Scripts for Phishing
+Guides/Tools/Scripts for Phishing
 
 ## Version Control
 - Name: README.MD
