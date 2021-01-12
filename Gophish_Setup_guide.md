@@ -1,5 +1,5 @@
 # Gophish Setup guide
-###### All referenced from these 2 sites, thank you - <https://chrislazari.com/gophish-service-ssl-ubuntu/> || <https://www.youtube.com/watch?v=S6S5JF6Gou0> 
+
 ## Create, Download, Setup GoPhish server on Digital Ocean
 
 ### Create a droplet to host Gophish
@@ -154,3 +154,6 @@ esac
 3. Click landing page > New Landing Page - go to a site/login page that you want to clone (either paste the URL in or copy all source and paste it in the HTML editor) Don't capture passwords as it over http only, not https.
 4. Click Users and Groups > New Group - Add /import users(these are the users you send the campaign to)
 5. Click Campigns > New Campaign > Select the newly created Email Template, Landing Page, Sending Profile, and Group to send to - (URL is the Gophish Server, has to be accessible externally or accessible by the client)
+
+## Credits
+<https://chrislazari.com/gophish-service-ssl-ubuntu/> || <https://www.youtube.com/watch?v=S6S5JF6Gou0> || <https://medium.com/@immure/setting-up-gophish-on-aws-c2f2fd78b7e9>
