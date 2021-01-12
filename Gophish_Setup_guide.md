@@ -129,7 +129,7 @@ esac
 4. Add the gophish service to update-rc.d to ensure its starts everytime your server starts `sudo update-rc.d gophish defaults`
 > To start `sudo service gophish start`
 
->To stop `sudo service gophish stop`
+> To stop `sudo service gophish stop`
 
 > To see the status `sudo service gophish status`
 
