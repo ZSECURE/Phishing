@@ -1,8 +1,23 @@
 # Gophish Setup guide
 
-## Create, Download, Setup GoPhish server on Digital Ocean
 
-### Create a droplet to host Gophish
+## Table of contents
+1. [Create, Download, Setup GoPhish server on Digital Ocean](#1)
+    1. [Create a droplet to host Gophish](#1.1)
+    2. [Login to Droplet and install Gophish](#1.2)
+2. [Generate SSL Certificate using Lets Encrypt](#2)
+3. [Add the SSL to server](#3)
+4. [Download and install GoPhish on a VM (Ubuntu) for testing purposes](#4)
+5. [Creating and configuring the Gophish service](#5)
+6. [Namecheap SMTP settings](#6)
+7. [Create a Campaign](#7)
+8. [The following variables are available in templates and landing pages](#8)
+9. [Credits](#9)
+
+
+## Create, Download, Setup GoPhish server on Digital Ocean <a name="1"></a>
+
+### Create a droplet to host Gophish <a name="1.1"></a>
 1. Go to https://cloud.digitalocean.com/login
 2. Create a droplet
 3. Choose OS - Latest Ubuntu
@@ -12,7 +27,7 @@
 7. Once created, check your email as the login details and IP address should be there.
 
 
-### Login to Droplet and install Gophish
+### Login to Droplet and install Gophish <a name="1.2"></a>
 1. Enter ssh username@ip_of_server and enter passwrod when prompted
 2. Change the root password when prompted
 3. Get the url from the download page (https://github.com/gophish/gophish/releases/download/v0.11.0/gophish-v0.11.0-linux-64bit.zip) this is the current latest one(12/01/21) 
@@ -25,7 +40,7 @@
 10. Once running, go to https://external_ip_of_server:63333/login and login with `admin:gophish` 
 11. Once logged in change the default credentails, navigate to https://external_ip_of_server:63333/settings to change it.
 
-## Generate SSL Certificate using Lets Encrypt
+## Generate SSL Certificate using Lets Encrypt <a name="2"></a>
 
 1. Got to https://zerossl.com 
 2. enter the domain e.g "zsecure.uk www.zsecure.uk"
@@ -41,7 +56,7 @@
 12. Download the Certificate and Domain Key
 13. `mv ~/Downloads/*.key ~/Downloads/*.crt /gophish-v0.11.0-linux-64bit/` 
 
-## Add the SSL to server
+## Add the SSL to server <a name="3"></a>
 1. Edit config.json
 2. Change the `"phish _server" : {"cert_path" : "location_of_certificate_you_downloaded" "key_path" : "location_of_privatekey_you_downloaded" }`
 3. see below the example config.json file
@@ -63,7 +78,7 @@
 4. Now restart the Gophish application so the changes are now applied
 
 
-## Download and install GoPhish on a VM (Ubuntu) for testing purposes
+## Download and install GoPhish on a VM (Ubuntu) for testing purposes <a name="4"></a>
 
 1. Get the url from the download page (https://github.com/gophish/gophish/releases/download/v0.11.0/gophish-v0.11.0-linux-64bit.zip) this is the current latest one
 2. The run the command to download `wget https://github.com/gophish/gophish/releases/download/v0.11.0/gophish-v0.11.0-linux-64bit.zip` make sure you're in the location you want to save it to.
@@ -75,7 +90,7 @@
 8. Once running, go to https://localhost:63333/login and login with `admin:gophish` 
 9. Once logged in change the default credentails, navigate to https://localhost:63333/settings to change it.
 
-## Creating and configuring the Gophish service
+## Creating and configuring the Gophish service <a name="5"></a>
 
 1. Create the Gophish service file and copy this script in to it
 
@@ -135,7 +150,7 @@ esac
 
 
 
-## Namecheap SMTP settings.
+## Namecheap SMTP settings <a name="6"></a>
 
 1. From: First Last <test@example.com>
 2. SMTP address: mail.privateemail.com
@@ -147,7 +162,7 @@ esac
 8. Save profile
 
 
-## Create a Campaign
+## Create a Campaign <a name="7"></a>
 
 1. Click Sending profiles > New Profile - Configure Email Server settings- (Sending profile - SMTP Server)
 2. Click Email Templates > New Template - Create as template to email customers - (I found this url for popular sites - https://reallygoodemails.com/ - You can Click View Code and Paste it in)
@@ -155,5 +170,19 @@ esac
 4. Click Users and Groups > New Group - Add /import users(these are the users you send the campaign to)
 5. Click Campigns > New Campaign > Select the newly created Email Template, Landing Page, Sending Profile, and Group to send to - (URL is the Gophish Server, has to be accessible externally or accessible by the client)
 
-## Credits
+## The following variables are available in templates and landing pages <a name="8"></a>
+| Variable | Description |
+| -------- | ----------- |
+| {{.RId}} | The target's unique ID |
+| {{.FirstName}} | The target's first name |
+| {{.LastName}} |The target's last name |
+| {{.Position}} | The target's position |
+| {{.Email}} | The target's email address |
+| {{.From}} | The spoofed sender |
+| {{.TrackingURL}} | The URL to the tracking handler |
+| {{.Tracker}} | An alias for `<img src="{{.TrackingURL}}"/>` |
+| {{.URL}} | The phishing URL |
+| {{.BaseURL}} | The base URL with the path and rid parameter stripped. Useful for making links to static files. |
+
+## Credits <a name="9"></a>
 <https://chrislazari.com/gophish-service-ssl-ubuntu/> || <https://www.youtube.com/watch?v=S6S5JF6Gou0> || <https://medium.com/@immure/setting-up-gophish-on-aws-c2f2fd78b7e9>
