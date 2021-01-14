@@ -1,4 +1,4 @@
-# Gophish Setup guide
+# Gophish setup guide & help notes
 
 
 ## Table of contents
@@ -12,7 +12,12 @@
 6. [Namecheap SMTP settings](#6)
 7. [Create a Campaign](#7)
 8. [The following variables are available in templates and landing pages](#8)
-9. [Credits](#9)
+9. [SMTP Settings](#9)
+10. [Troubleshooting](#10)
+    1. [Landing Page](#11)
+    2. [Email Template](#12)
+    3. [Sending Profiles](#13)
+10. [Credits](#14)
 
 
 ## Create, Download, Setup GoPhish server on Digital Ocean <a name="1"></a>
@@ -108,7 +113,7 @@
 
 processName=Gophish
 process=gophish
-appDirectory=/tools/gophish/
+appDirectory=/tools/gophish/     # Edit this to be the location of the installed application e.g /opt/gophish
 logfile=/var/log/gophish/gophish.log
 errfile=/var/log/gophish/gophish.error
 
@@ -127,7 +132,7 @@ sleep 1
 }
 
 status() {
-pid=$(/usr/sbin/pidof ${process})
+pid=$(/usr/bin/pidof ${process})
 if [[ "$pid" != "" ]]; then
 echo ${processName}' is running…'
 else
@@ -184,5 +189,21 @@ esac
 | {{.URL}} | The phishing URL |
 | {{.BaseURL}} | The base URL with the path and rid parameter stripped. Useful for making links to static files. |
 
-## Credits <a name="9"></a>
-<https://chrislazari.com/gophish-service-ssl-ubuntu/> || <https://www.youtube.com/watch?v=S6S5JF6Gou0> || <https://medium.com/@immure/setting-up-gophish-on-aws-c2f2fd78b7e9>
+## SMTP Settings <a name="9"></a>
+   | Provider | Server | Port | Encryption Method |
+   | --- | --- | --- | --- |
+   | Google | smtp.gmail.com |  587 | STARTTLS |
+   | Office 365 | smtp.office365.com |  587 | STARTTLS |
+   | Namecheap | mail.privateemail.com |   587 | STARTTLS |
+
+## Troubleshooting <a name="10"></a>
+##### Landing page <a name="11"></a>
+1. The page form that you submit has to include the **name** variable e.g `<input type="text" name="firstName" placeholder="Please enter your first name...">` otherwise it won't capture the data when submitted
+2. Inspect the page for the submit function, make sure there is no "metadata1" being submitted, this will show base64 encoded of the webpage and can be removed.
+##### Email Template <a name="12"></a>
+1. The embeded Gophish variables e.g `{{.FirstName}}` is case sensitive 
+##### Sending Profile <a name="13"></a>
+1. Add name, in From field: `First Name <First.Name@emailaddress.com>`
+
+## Credits <a name="14"></a>
+<https://chrislazari.com/gophish-service-ssl-ubuntu/> | <https://www.youtube.com/watch?v=S6S5JF6Gou0> | <https://medium.com/@immure/setting-up-gophish-on-aws-c2f2fd78b7e9>
