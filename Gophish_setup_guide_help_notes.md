@@ -1,4 +1,4 @@
-# Gophish setup guide & help notes
+# Gophish Setup guide & Help Notes
 
 
 ## Table of contents
@@ -17,7 +17,8 @@
     1. [Landing Page](#11)
     2. [Email Template](#12)
     3. [Sending Profiles](#13)
-10. [Credits](#14)
+    4. [Email Headers](#14)
+10. [Credits](#15)
 
 
 ## Create, Download, Setup GoPhish server on Digital Ocean <a name="1"></a>
@@ -204,6 +205,14 @@ esac
 1. The embeded Gophish variables e.g `{{.FirstName}}` is case sensitive 
 ##### Sending Profile <a name="13"></a>
 1. Add name, in From field: `First Name <First.Name@emailaddress.com>`
+##### Email Headers <a name="14"></a>
+1. Add the below email headers to prevent spam detection
+    | Header | Value |
+    | --- | --- |
+    | Mime-Version: | IGNORE |
+    | Received: | IGNORE |
+    | X-Mailer: | Microsoft Outlook 16.0 |
+    | Mime-Version: | IGNORE |
 
-## Credits <a name="14"></a>
+## Credits <a name="15"></a>
 <https://chrislazari.com/gophish-service-ssl-ubuntu/> | <https://www.youtube.com/watch?v=S6S5JF6Gou0> | <https://medium.com/@immure/setting-up-gophish-on-aws-c2f2fd78b7e9>
