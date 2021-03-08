@@ -209,10 +209,10 @@ esac
 1. Add the below email headers to prevent spam detection
     | Header | Value |
     | --- | --- |
-    | Mime-Version: | IGNORE |
-    | Received: | IGNORE |
-    | X-Mailer: | Microsoft Outlook 16.0 |
-    | Mime-Version: | IGNORE |
+    | Mime-Version | IGNORE |
+    | Received | IGNORE |
+    | X-Mailer | Microsoft Outlook 16.0 |
+    | X-Originating-IP | IGNORE |
 
 ## Credits <a name="15"></a>
 <https://chrislazari.com/gophish-service-ssl-ubuntu/> | <https://www.youtube.com/watch?v=S6S5JF6Gou0> | <https://medium.com/@immure/setting-up-gophish-on-aws-c2f2fd78b7e9>
